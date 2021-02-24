@@ -4,27 +4,42 @@
 struct polynomial{
 	int num;
 	int exp;
-	struct node *link;
+	struct polynomial *link;
 }*p;
 
 int main(){
 	int term,i;
+	struct polynomial *tmp, *newTerm;
+	p=(struct polynomial*)malloc(sizeof(struct polynomial));
 	printf("Enter the number of terms of the polynomial: ");
 	scanf("%d",&term);
-	p=(struct polynomial*)malloc(term*sizeof(struct polynomial));
-	for(i=0; i<term; i++){
-		printf("\nTerm %d",i+1);
-		printf("\n\nEnter Coefficient: ");
-		scanf("%d",&(p+i)->num);
-		printf("Enter the exponent: ");
-		scanf("%d",&(p+i)->exp);
+	tmp=p;
+	printf("\nTerm 1\n");
+	printf("\nEnter Coefficient: ");
+	scanf("%d",&p->num);
+	printf("Enter Exponent: ");
+	scanf("%d",&p->exp);
+	p->link=NULL;
+	for(i=2;i<=term;i++){
+		newTerm=(struct polynomial*)malloc(sizeof(struct polynomial));
+		printf("\nTerm %d\n",i);
+		printf("\nEnter Coefficient: ");
+		scanf("%d",&newTerm->num);
+		printf("Enter Exponent: ");
+		scanf("%d",&newTerm->exp);
+		newTerm->link=NULL;
+		tmp->link=newTerm;
+		tmp=tmp->link;
 	}
 
-	for(i=0; i<term; i++){
-		printf("%dx^%d",(p+i)->num,(p+i)->exp);
-		if(i!=term-1){
+	printf("\n\nDisplaying\n");
+	tmp=p;
+	while(tmp!=NULL){
+		printf("%dx^%d",tmp->num,tmp->exp);
+		if(tmp->link!=NULL){
 			printf(" + ");
 		}
+		tmp=tmp->link;
 	}
 	printf("\n");
 
