@@ -4,7 +4,6 @@
 struct polynomial{
 	int num;
 	int exp;
-	struct node *link;
 }*p;
 
 int main(){
