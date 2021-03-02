@@ -17,7 +17,7 @@ void delete();
 void main(){
     int choice;
     do{
-        printf("\nMenu\n1. Create List\n2. Delete\n3. Insert\n4. Display\n\nEnter choice: ");
+        printf("\nMenu\n1. Create List\n2. Delete\n3. Insert\n4. Display\n5. Exit\n\nEnter choice: ");
         scanf("%d",&choice);
         switch (choice)
         {
